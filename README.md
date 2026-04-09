@@ -499,3 +499,7 @@ User-agent: *
 Disallow: /
 Content-signal: search=no, ai-input=no, ai-train=no
 ```
+
+---
+
+> Dieses Tool ist nur für die Crawler/AI Bots, die die robots.txt respektieren. Respekt ist heutzutage aber selten.
