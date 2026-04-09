@@ -1,6 +1,6 @@
 {
   "name": "@casoon/astro-crawler-policy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Policy-first crawler control for Astro — generates robots.txt and llms.txt with presets, per-bot rules, AI crawler registry, and build-time audits.",
   "type": "module",
   "main": "./dist/index.js",
