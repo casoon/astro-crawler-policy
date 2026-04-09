@@ -53,7 +53,9 @@ Presets are the primary way to express intent. Each preset sets default content 
 | `blockTraining` | allow | allow | disallow | disallow |
 | `lockdown` | disallow | disallow | disallow | disallow |
 
-`blockTraining` additionally adds explicit `Disallow` rules for GPTBot, Google-Extended, and CCBot on top of the group-level setting.
+`citationFriendly` allows bots that do citation or summarization but blocks bots whose only purpose is training data collection (GPTBot, Google-Extended, CCBot, Bytespider, Applebot-Extended). Bots with mixed roles like ClaudeBot are allowed.
+
+`blockTraining` goes further and blocks every bot with any training category, including mixed bots like ClaudeBot and meta-externalagent.
 
 `lockdown` adds a global `User-agent: * / Disallow: /` rule, overriding everything.
 

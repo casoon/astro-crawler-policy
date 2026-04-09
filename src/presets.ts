@@ -23,6 +23,13 @@ export const presetDefaults: Record<Preset, Partial<AstroCrawlerPolicyOptions>> 
       searchEngines: 'allow',
       verifiedAi: 'allow',
       unknownAi: 'disallow'
+    },
+    bots: {
+      GPTBot: 'disallow',
+      'Google-Extended': 'disallow',
+      CCBot: 'disallow',
+      Bytespider: 'disallow',
+      'Applebot-Extended': 'disallow'
     }
   },
   openToAi: {
@@ -50,8 +57,12 @@ export const presetDefaults: Record<Preset, Partial<AstroCrawlerPolicyOptions>> 
     },
     bots: {
       GPTBot: 'disallow',
+      ClaudeBot: 'disallow',
       'Google-Extended': 'disallow',
-      CCBot: 'disallow'
+      CCBot: 'disallow',
+      Bytespider: 'disallow',
+      'meta-externalagent': 'disallow',
+      'Applebot-Extended': 'disallow'
     }
   },
   lockdown: {

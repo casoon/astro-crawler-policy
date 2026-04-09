@@ -36,15 +36,42 @@ describe('compilePolicy', () => {
     expect(policy.preset).toBe('citationFriendly');
   });
 
+  it('citationFriendly disallows pure training bots by default', () => {
+    const policy = compilePolicy({ options: { preset: 'citationFriendly' } });
+    const trainingOnly = ['GPTBot', 'Google-Extended', 'CCBot', 'Bytespider', 'Applebot-Extended'];
+    for (const id of trainingOnly) {
+      const rule = policy.botRules.find((r) => r.id === id);
+      expect(rule?.action, `${id} should be disallow`).toBe('disallow');
+    }
+  });
+
+  it('citationFriendly allows mixed citation+training bots', () => {
+    const policy = compilePolicy({ options: { preset: 'citationFriendly' } });
+    const mixed = ['ClaudeBot', 'meta-externalagent'];
+    for (const id of mixed) {
+      const rule = policy.botRules.find((r) => r.id === id);
+      expect(rule?.action, `${id} should be allow`).toBe('allow');
+    }
+  });
+
+  it('blockTraining disallows all bots with training category', () => {
+    const policy = compilePolicy({ options: { preset: 'blockTraining' } });
+    const allTraining = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'CCBot', 'Bytespider', 'meta-externalagent', 'Applebot-Extended'];
+    for (const id of allTraining) {
+      const rule = policy.botRules.find((r) => r.id === id);
+      expect(rule?.action, `${id} should be disallow`).toBe('disallow');
+    }
+  });
+
   it('applies explicit bot override over group rule', () => {
     const policy = compilePolicy({
       options: {
-        preset: 'citationFriendly',
-        bots: { GPTBot: 'disallow' }
+        preset: 'seoOnly',
+        bots: { ClaudeBot: 'allow' }
       }
     });
-    const gptBot = policy.botRules.find((r) => r.id === 'GPTBot');
-    expect(gptBot?.action).toBe('disallow');
+    const claudeBot = policy.botRules.find((r) => r.id === 'ClaudeBot');
+    expect(claudeBot?.action).toBe('allow');
   });
 
   it('throws on unknown preset', () => {
