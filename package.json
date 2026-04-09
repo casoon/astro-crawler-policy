@@ -32,6 +32,14 @@
     "sitemap"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/casoon/astro-crawler-policy#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casoon/astro-crawler-policy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/casoon/astro-crawler-policy/issues"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
