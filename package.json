@@ -1,0 +1,59 @@
+{
+  "name": "@casoon/astro-crawler-policy",
+  "version": "0.1.0",
+  "description": "Policy-first crawler control for Astro — generates robots.txt and llms.txt with presets, per-bot rules, AI crawler registry, and build-time audits.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "astro-component",
+    "withastro",
+    "robots.txt",
+    "llms.txt",
+    "crawler",
+    "crawler-policy",
+    "ai-crawler",
+    "bot",
+    "seo",
+    "ai",
+    "sitemap"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "astro": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "astro": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.4"
+  }
+}
