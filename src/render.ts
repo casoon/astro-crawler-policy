@@ -98,7 +98,7 @@ function renderContentSignals(contentSignals: ContentSignals): string[] {
     parts.push(`ai-train=${contentSignals.aiTrain ? 'yes' : 'no'}`);
   }
 
-  return parts.length ? [`Content-signal: ${parts.join(', ')}`] : [];
+  return parts.length ? [`Content-Signal: ${parts.join(', ')}`] : [];
 }
 
 function renderRule(rule: RobotsRule): string[] {
@@ -141,8 +141,23 @@ export function renderRobotsTxt(policy: ResolvedPolicy): string {
       disallow: []
     };
 
-  lines.push(...renderRule(wildcardRule));
+  // Render wildcard block with Content-Signal before Allow/Disallow (per spec)
+  for (const userAgent of wildcardRule.userAgent) {
+    lines.push(`User-agent: ${userAgent}`);
+  }
+  if (wildcardRule.comment) {
+    lines.push(`# ${wildcardRule.comment}`);
+  }
   lines.push(...renderContentSignals(policy.contentSignals));
+  for (const allow of wildcardRule.allow ?? []) {
+    lines.push(`Allow: ${allow}`);
+  }
+  for (const disallow of wildcardRule.disallow ?? []) {
+    lines.push(`Disallow: ${disallow}`);
+  }
+  if (wildcardRule.crawlDelay !== undefined) {
+    lines.push(`Crawl-delay: ${wildcardRule.crawlDelay}`);
+  }
   lines.push('');
 
   for (const rule of policy.rules) {

@@ -64,7 +64,9 @@ Presets are the primary way to express intent. Each preset sets default content 
 Content signals are non-standard directives appended to the wildcard `User-agent: *` block:
 
 ```
-Content-signal: search=yes, ai-input=yes, ai-train=no
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
 ```
 
 They communicate intent to crawlers that support them. The three signals map to:
@@ -75,7 +77,7 @@ They communicate intent to crawlers that support them. The three signals map to:
 | `aiInput` | Using content as input for AI responses (citation, summarization) |
 | `aiTrain` | Using content as AI training data |
 
-Content signals are not yet a web standard. Google Search Console may flag them as unrecognised directives — the audit system emits an `info` message when they are present.
+The directive name and signal keys follow the [contentsignals.org](https://contentsignals.org) specification (proposed IETF aipref standard). Google Search Console may flag them as unrecognised directives — the audit system emits an `info` message when they are present.
 
 Each preset sets default values for all three signals. You can override them individually:
 
@@ -381,8 +383,8 @@ crawlerPolicy({
 # preset: citationFriendly
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
-Content-signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: GPTBot
 Disallow: /
@@ -437,8 +439,8 @@ crawlerPolicy({ preset: 'seoOnly' })
 # preset: seoOnly
 
 User-agent: *
+Content-Signal: search=yes, ai-input=no, ai-train=no
 Allow: /
-Content-signal: search=yes, ai-input=no, ai-train=no
 
 User-agent: GPTBot
 Disallow: /
@@ -498,8 +500,8 @@ When `CONTEXT=staging` or `NODE_ENV=staging`:
 # preset: lockdown
 
 User-agent: *
+Content-Signal: search=no, ai-input=no, ai-train=no
 Disallow: /
-Content-signal: search=no, ai-input=no, ai-train=no
 ```
 
 ---

@@ -68,7 +68,7 @@ describe('renderRobotsTxt', () => {
       contentSignals: { search: true, aiInput: true, aiTrain: false }
     };
     const result = renderRobotsTxt(policy);
-    expect(result).toContain('Content-signal:');
+    expect(result).toContain('Content-Signal:');
     expect(result).toContain('search=yes');
     expect(result).toContain('ai-input=yes');
     expect(result).toContain('ai-train=no');
