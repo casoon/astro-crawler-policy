@@ -1,3 +1,6 @@
+> **This package is no longer actively maintained.**
+> It has been superseded by [@casoon/astro-site-files](https://github.com/casoon/astro-site-files), which bundles robots.txt, llms.txt, sitemap.xml, security.txt, and humans.txt in a single integration. New features and fixes will only be made there.
+
 # @casoon/astro-crawler-policy
 
 Policy-first crawler control for Astro. Generates `robots.txt` (and optionally `llms.txt`) from a typed configuration at build time.
